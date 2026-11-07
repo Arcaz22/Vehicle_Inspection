@@ -1,0 +1,48 @@
+:root {
+  --focus: #087b6d;
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #182824;
+  background: #f5f7f6;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+a[href],
+button,
+select,
+label[for],
+label:has(input[type="radio"]),
+label:has(input[type="checkbox"]) {
+  cursor: pointer;
+}
+:disabled {
+  cursor: not-allowed;
+}
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --focus: #a5dbc4;
+    color: #eaf2ef;
+    background: #101b18;
+  }
+}
