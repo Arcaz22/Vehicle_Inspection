@@ -1,2 +1,5 @@
 # Local environment secrets
 /.env
+
+# Technical test instructions; do not include in submission
+/document.md

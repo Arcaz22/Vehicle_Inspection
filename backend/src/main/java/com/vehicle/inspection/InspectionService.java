@@ -83,7 +83,7 @@ public class InspectionService {
         List<InspectionItem> items = validateAndMapItems(input.items(), input.hasKey());
         inspection.inspectorName = input.inspectorName().trim();
         inspection.hasKey = input.hasKey();
-        inspection.replaceItems(items);
+        inspection.updateItems(items);
         inspection.updatedAt = Instant.now();
         entityManager.flush();
         return toView(inspection);

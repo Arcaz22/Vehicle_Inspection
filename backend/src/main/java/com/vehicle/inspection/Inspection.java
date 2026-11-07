@@ -20,7 +20,11 @@ import jakarta.persistence.PreUpdate;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -66,6 +70,29 @@ public class Inspection {
             item.inspection = this;
             items.add(item);
         });
+    }
+
+    public void updateItems(List<InspectionItem> newItems) {
+        Map<String, InspectionItem> existingByPoint = new HashMap<>();
+        for (InspectionItem item : items) {
+            existingByPoint.put(item.pointCode, item);
+        }
+
+        Set<String> replacementPoints = new HashSet<>();
+        for (InspectionItem replacement : newItems) {
+            replacementPoints.add(replacement.pointCode);
+            InspectionItem existing = existingByPoint.get(replacement.pointCode);
+            if (existing == null) {
+                replacement.inspection = this;
+                items.add(replacement);
+            } else {
+                existing.condition = replacement.condition;
+                existing.note = replacement.note;
+                existing.photoRefs = new ArrayList<>(replacement.photoRefs);
+            }
+        }
+
+        items.removeIf(item -> !replacementPoints.contains(item.pointCode));
     }
 
     @PrePersist

@@ -228,6 +228,11 @@ function InspectionForm() {
           <Link className="wordmark" to="/inspections/new">
             Inspeksi Kendaraan
           </Link>
+          <nav aria-label="Navigasi utama">
+            <Link className="header-link" to="/inspections/new">
+              Inspeksi baru
+            </Link>
+          </nav>
         </div>
       </header>
       <main id="main" className="page">
